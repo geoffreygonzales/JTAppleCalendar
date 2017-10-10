@@ -43,8 +43,9 @@ public extension JTAppleCalendarViewDelegate {
 /// object that mediates the application’s data model for a
 /// the JTAppleCalendarViewDataSource object. data source provides the
 /// the calendar-view object with the information it needs to construct and
-/// then modify it self
+/// then modify itself
 public protocol JTAppleCalendarViewDataSource: class {
+          
     /// Asks the data source to return the start and end boundary dates
     /// as well as the calendar to use. You should properly configure
     /// your calendar at this point.
@@ -59,6 +60,7 @@ public protocol JTAppleCalendarViewDataSource: class {
 /// JTAppleCalendarViewDelegate protocol Optional methods of the protocol
 /// allow the delegate to manage selections, and configure the cells
 public protocol JTAppleCalendarViewDelegate: class {
+          
     /// Asks the delegate if selecting the date-cell with a specified date is
     /// allowed
     /// - Parameters:
@@ -87,6 +89,7 @@ public protocol JTAppleCalendarViewDelegate: class {
     ///             This may be nil if the selected cell is off the screen
     ///     - cellState: The month the date-cell belongs to.
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState)
+          
     /// Tells the delegate that a date-cell
     /// with a specified date was de-selected
     /// - Parameters:

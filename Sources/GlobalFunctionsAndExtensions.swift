@@ -30,7 +30,6 @@ extension Calendar {
         return dateFormatter
     }()
     
-
     func startOfMonth(for date: Date) -> Date? {
         guard let comp = dateFormatterComponents(from: date) else { return nil }
         return Calendar.formatter.date(from: "\(comp.year) \(comp.month) 01")
