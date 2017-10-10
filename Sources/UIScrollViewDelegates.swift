@@ -21,6 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
+
 extension JTAppleCalendarView: UIScrollViewDelegate {
     /// Inform the scrollViewDidEndDecelerating
     /// function that scrolling just occurred
@@ -60,7 +61,6 @@ extension JTAppleCalendarView: UIScrollViewDelegate {
             return
         }
         
-        
         let setTargetContentOffset = {(finalOffset: CGFloat) -> Void in
             if self.scrollDirection == .horizontal {
                 targetContentOffset.pointee.x = finalOffset
@@ -80,7 +80,6 @@ extension JTAppleCalendarView: UIScrollViewDelegate {
         if directionVelocity == 0.0 {
             decelerationRate = UIScrollViewDecelerationRateFast
         }
-        
         
         let isScrollingForward = {
             return directionVelocity > 0 ||  contentOffset > self.lastSavedContentOffset
@@ -203,7 +202,7 @@ extension JTAppleCalendarView: UIScrollViewDelegate {
                         }
                     } else if calendarViewLayout.thereAreHeaders,
                         let attrib = calendarLayout.layoutAttributesForSupplementaryView(ofKind: UICollectionElementKindSectionHeader, at: attribPath) { // JT101 this was changed
-                        // change the final value to the end of the header
+                        // Change the final value to the end of the header
                         if isScrollingForward() {
                             calculatedOffSet = attrib.frame.origin.y + attrib.frame.size.height
                         } else {

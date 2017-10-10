@@ -106,6 +106,7 @@ public struct ConfigurationParameters {
                 break
             }
         }
+          
         if let nonNilHasStrictBoundaries = hasStrictBoundaries {
             self.hasStrictBoundaries = nonNilHasStrictBoundaries
         } else {
@@ -251,8 +252,8 @@ struct JTAppleDateConfigGenerator {
         -> (months: [Month], monthMap: [Int: Int], totalSections: Int, totalDays: Int) {
             let differenceComponents = parameters.calendar.dateComponents([.month], from: parameters.startDate, to: parameters.endDate)
             let numberOfMonths = differenceComponents.month! + 1
-            // if we are for example on the same month
-            // and the difference is 0 we still need 1 to display it
+            // If for example we are on the same month
+            // and the difference is 0 - we still need 1 to display it
             var monthArray: [Month] = []
             var monthIndexMap: [Int: Int] = [:]
             var section = 0

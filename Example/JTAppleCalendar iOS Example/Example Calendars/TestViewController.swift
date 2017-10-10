@@ -90,14 +90,17 @@ class TestViewController: UIViewController {
     @IBAction func debugthis(_ sender: UIButton) {
         print(calendarView.selectedDates)
     }
+          
     @IBAction func singleSelect(_ sender: UIButton) {
         calendarView.allowsMultipleSelection = false
         calendarView.isRangeSelectionUsed = false
     }
+          
     @IBAction func multiSelect(_ sender: UIButton) {
         calendarView.allowsMultipleSelection = true
         calendarView.isRangeSelectionUsed = true
     }
+          
     func setupViewsOfCalendar(from visibleDates: DateSegmentInfo) {
         guard let startDate = visibleDates.monthDates.first?.date else {
             return

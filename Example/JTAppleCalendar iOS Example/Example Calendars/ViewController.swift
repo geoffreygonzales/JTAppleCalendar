@@ -264,7 +264,7 @@ class ViewController: UIViewController {
     }
 
     func setupViewsOfCalendar(from visibleDates: DateSegmentInfo) {
-        guard let startDate = visibleDates.monthDates.first?.date else {
+        guard let  = visibleDates.monthDates.first?.date else {
             return
         }
         let month = testCalendar.dateComponents([.month], from: startDate).month!

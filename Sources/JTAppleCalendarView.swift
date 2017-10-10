@@ -27,7 +27,6 @@ let maxNumberOfRowsPerMonth = 6 // Should not be changed
 let developerErrorMessage = "There was an error in this code section. Please contact the developer on GitHub"
 let decorationViewID = "Are you ready for the life after this one?"
 
-
 /// An instance of JTAppleCalendarView (or simply, a calendar view) is a
 /// means for displaying and interacting with a gridstyle layout of date-cells
 open class JTAppleCalendarView: UICollectionView {
@@ -52,9 +51,9 @@ open class JTAppleCalendarView: UICollectionView {
     /// Enables/Disables the stretching of date cells. When enabled cells will stretch to fit the width of a month in case of a <= 5 row month.
     open var allowsDateCellStretching = true
     
-    /// Alerts the calendar that range selection will be checked. If you are
-    /// not using rangeSelection and you enable this,
-    /// then whenever you click on a datecell, you may notice a very fast
+    /// Alerts the calendar that range selection will be checked
+    /// If you are not using rangeSelection and you enable this,
+    /// then whenever you tap a datecell, you may notice a very fast
     /// refreshing of the date-cells both left and right of the cell you
     /// just selected.
     open var isRangeSelectionUsed: Bool = false
@@ -69,17 +68,19 @@ open class JTAppleCalendarView: UICollectionView {
         didSet { setupMonthInfoAndMap() } // Refetch the data source for a data source change
     }
     
-    var lastSavedContentOffset: CGFloat    = 0.0
-    var triggerScrollToDateDelegate: Bool? = true
-    var isScrollInProgress                 = false
-    var isReloadDataInProgress             = false
+    var lastSavedContentOffset: CGFloat        = 0.0
+    var triggerScrollToDateDelegate: Bool?    = true
+    var isScrollInProgress                                     = false
+    var isReloadDataInProgress                          = false
     
-    // keeps track of if didEndScroll is not yet completed. If isStillScrolling
+    // Keeps track of if didEndScroll is not yet completed. If isStillScrolling
     var didEndScollCount = 0
+          
     // Keeps track of scroll target location. If isScrolling, and user taps while scrolling
     var endScrollTargetLocation: CGFloat = 0
-    
+          
     var generalDelayedExecutionClosure: [(() -> Void)] = []
+          
     var scrollDelayedExecutionClosure: [(() -> Void)]  = []
     
     let dateGenerator = JTAppleDateConfigGenerator()
@@ -105,11 +106,15 @@ open class JTAppleCalendarView: UICollectionView {
     
     // Configuration parameters from the dataSource
     var cachedConfiguration: ConfigurationParameters!
+          
     // Set the start of the month
     var startOfMonthCache: Date!
+          
     // Set the end of month
     var endOfMonthCache: Date!
+          
     var selectedCellData: [IndexPath:SelectedCellData] = [:]
+          
     var pathsToReload: Set<IndexPath> = [] //Paths to reload because of prefetched cells
     
     var anchorDate: Date?
@@ -118,7 +123,7 @@ open class JTAppleCalendarView: UICollectionView {
         var retval: CGPoint = .zero
         guard let date = anchorDate else { return retval }
         
-        // reset the initial scroll date once used.
+        // Reset the initial scroll date once used.
         anchorDate = nil
         
         // Ensure date is within valid boundary
@@ -130,7 +135,6 @@ open class JTAppleCalendarView: UICollectionView {
         let retrievedPathsFromDates = pathsFromDates([date])
         if retrievedPathsFromDates.isEmpty { return retval }
         let sectionIndexPath = pathsFromDates([date])[0]
-        
         
         if calendarViewLayout.thereAreHeaders && scrollDirection == .vertical {
             let indexPath = IndexPath(item: 0, section: sectionIndexPath.section)
